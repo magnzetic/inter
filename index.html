@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koleb</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="light-mode">
+
+<!-- Loading Animation -->
+<div class="loading-container" id="loadingAnimation">
+    <svg class="blob1" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#6A1E55" d="M31.6,-47.5C42.1,-42.4,52.7,-35.6,60,-25.7C67.2,-15.7,71.1,-2.5,70.4,10.9C69.7,24.3,64.4,37.7,56.4,51.1C48.3,64.4,37.5,77.6,23.1,84.7C8.6,91.7,-9.4,92.6,-23.5,85.8C-37.6,79.1,-47.8,64.7,-59.6,51.5C-71.4,38.2,-84.7,26.2,-86.5,12.5C-88.3,-1.1,-78.5,-16.3,-70,-30.8C-61.6,-45.4,-54.3,-59.3,-42.8,-64C-31.4,-68.7,-15.7,-64.1,-2.6,-60.1C10.5,-56,21,-52.6,31.6,-47.5Z" transform="translate(100 100)" />
+    </svg>
+    <svg class="blob2" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#A64D79" d="M55.1,-46.2C62.8,-34.4,54.3,-11.9,46.7,6.3C39,24.5,32.2,38.5,20.5,45.1C8.8,51.6,-7.6,50.8,-26.3,45.4C-45,39.9,-65.9,29.9,-69.5,15.4C-73.2,1,-59.6,-17.8,-45.1,-31.2C-30.6,-44.5,-15.3,-52.4,4.2,-55.8C23.7,-59.1,47.5,-58,55.1,-46.2Z" transform="translate(100 100)" />
+    </svg>
+    <div class="loading-username username-1">Kichuune</div>
+    <div class="loading-username username-2">shiuyalan</div>
+</div>
+
+<!-- Controls for Theme and Font Size -->
+<div class="controls">
+    <span>🌞</span>
+    <div class="toggle-switch" id="themeToggle"></div>
+    <span>🌜</span>
+    <div class="font-controls">
+        <button id="decreaseFont" class="font-button">-</button>
+        <span id="fontSizeLabel">16</span>px
+        <button id="increaseFont" class="font-button">+</button>
+    </div>
+</div>
+
+<!-- Landing Page Content -->
+<div id="landing-page" class="container center" style="display: none;">
+    <h1>judul cerita di sini</h1>
+    <p>sinopsis di sini</p>
+    <a class="start-button" onclick="startStory()">Mulai</a>
+</div>
+
+<!-- Story Content, Hidden Initially -->
+<div id="story" style="display: none;">
+    <div class="container" id="narration">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ullamcorper nec quam vitae faucibus.</p>
+        <p>Sed quis nulla sed ante vulputate pulvinar sed sed nisl. Proin volutpat venenatis nibh in facilisis.</p>
+    </div>
+
+    <div class="choice-container">
+        <a class="choice" id="choice-cave" onclick="chooseOption('A')" style="background-image: url('choosekiri.png');">
+            Choice A
+        </a>
+        <a class="choice" id="choice-lake" onclick="chooseOption('B')" style="background-image: url('choosekanan.png');">
+            Choice B
+        </a>
+    </div>
+
+    <div id="next-narration" style="display:none;">
+        <div id="A">
+            <p>Adventure A begins here...</p>
+        </div>
+        <div id="B">
+            <p>Adventure B begins here...</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Handle Loading Animation
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.getElementById('loadingAnimation').style.display = 'none';
+            document.getElementById('landing-page').style.display = 'block';
+            const landingPage = document.getElementById('landing-page');
+            landingPage.classList.add('show');
+        }, 4000);
+    });
+
+    // Dark/Light Mode Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        document.body.classList.toggle('light-mode');
+        themeToggle.classList.toggle('dark');
+        localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode');
+    });
+
+    // Font Size Adjustment
+    const fontSizeLabel = document.getElementById('fontSizeLabel');
+    const decreaseFont = document.getElementById('decreaseFont');
+    const increaseFont = document.getElementById('increaseFont');
+
+    let currentFontSize = 16;
+
+    function updateFontSize(size) {
+        currentFontSize = Math.max(10, Math.min(size, 30));
+        document.body.style.fontSize = currentFontSize + 'px';
+        fontSizeLabel.textContent = currentFontSize;
+        localStorage.setItem('fontSize', currentFontSize); // Save font size in localStorage
+    }
+
+    decreaseFont.addEventListener('click', () => updateFontSize(currentFontSize - 1));
+    increaseFont.addEventListener('click', () => updateFontSize(currentFontSize + 1));
+
+    // Apply saved settings from localStorage (if any)
+    window.addEventListener('load', () => {
+        const savedTheme = localStorage.getItem('theme');
+        const savedFontSize = localStorage.getItem('fontSize');
+        
+        if (savedTheme) {
+            document.body.classList.remove('light-mode', 'dark-mode');
+            document.body.classList.add(savedTheme);
+            themeToggle.classList.toggle('dark', savedTheme === 'dark-mode');
+        }
+        
+        if (savedFontSize) {
+            currentFontSize = parseInt(savedFontSize, 10);
+            updateFontSize(currentFontSize);
+        }
+    });
+
+    // Start the Story (hide landing page, show story)
+    function startStory() {
+        document.getElementById('landing-page').style.display = 'none';
+        document.getElementById('story').style.display = 'block';
+    }
+
+    // Handle Story Choices
+    function chooseOption(choice) {
+        if (choice === 'A') {
+            window.location.href = 'pageA.html'; // Redirect to Page A
+        } else if (choice === 'B') {
+            window.location.href = 'pageB.html'; // Redirect to Page B
+        }
+    }
+</script>
+</body>
+</html>

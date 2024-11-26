@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>koleb</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Common styles -->
+</head>
+<body class="light-mode">
+
+<!-- Controls for theme and font size -->
+<div class="controls">
+    <span>🌞</span>
+    <div class="toggle-switch" id="themeToggle"></div>
+    <span>🌜</span>
+    <div class="font-controls">
+        <button id="decreaseFont" class="font-button">-</button>
+        <span id="fontSizeLabel">16</span>px
+        <button id="increaseFont" class="font-button">+</button>
+    </div>
+</div>
+
+<!-- Page content goes here -->
+<div id="story">
+    <div class="container" id="narration">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ullamcorper nec quam vitae faucibus. Suspendisse nunc est, rutrum non aliquet nec, ultrices ac neque.
+        </p>
+    </div>
+
+    <div class="choice-container">
+        <a class="choice" id="choice-cave" onclick="chooseOption('A')" style="background-image: url('choosekiri.png');">
+            Choice A
+        </a>
+        <a class="choice" id="choice-lake" onclick="chooseOption('B')" style="background-image: url('choosekanan.png');">Choice B</a>
+    </div>
+</div>
+
+<!-- Include shared JavaScript -->
+<script src="main.js"></script> <!-- Include the common JS file -->
+<script>
+    // Custom page-specific logic if needed
+    function chooseOption(choice) {
+        if (choice === 'A') {
+            window.location.href = 'pageBA.html'; // Redirect to Page A
+        } else if (choice === 'B') {
+            window.location.href = 'pageBB.html'; // Redirect to Page B
+        }
+    }
+</script>
+
+</body>
+</html>
