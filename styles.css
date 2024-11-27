@@ -166,8 +166,8 @@ body.dark-mode {
     .container {
         padding: 10px;
         max-width: 90%;
-        height: 373px;
-        width: 266px;
+        height: 466px;
+        width: 333px;
     }
     h1 {
         font-size: 1.5rem; /* Scale down */
