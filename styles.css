@@ -103,6 +103,40 @@ body.dark-mode {
         opacity: 0;
     }
 }
+
+/* Fade out effect for the loading animation */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Fade in effect for the landing page */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Apply animation to the loading container */
+.loading-container.fade-out {
+    animation: fadeOut 1s ease forwards;
+}
+
+/* Apply animation to the landing page */
+#landing-page.show {
+    animation: fadeIn 1s ease forwards;
+}
+
+/* Initial hidden state */
 .container {
     width: 90%;
     max-width: 400px;
@@ -113,10 +147,30 @@ body.dark-mode {
     overflow: hidden;
     background-image: url('bg light.png');
     background-size: cover;
-
-    transition: all 0.3s;
     text-align: center;
+
+    opacity: 0; /* Start hidden */
+    transform: translateY(50px); /* Start off-screen */
 }
+
+/* Add animation using keyframes */
+@keyframes slideFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px); /* Start below */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* End at original position */
+    }
+}
+
+/* Trigger animation when active */
+.container.active {
+    opacity: 1; /* Fully visible */
+    animation: slideFadeIn 0.8s ease forwards; /* Smooth fade-in and slide */
+}
+
 
 @media (min-width: 1024px) {
     .container {
@@ -356,6 +410,7 @@ body.dark-mode .start-button:hover {
 }
 
 #landing-page {
+    margin-top: 2px;
     opacity: 0;
     transform: scale(0.8);
     transition: opacity 1s, transform 1s;
@@ -391,3 +446,4 @@ body.light-mode h1::after {
 body.dark-mode h1::after {
     background-color: #535C91; /* Dark mode color */
 }
+
