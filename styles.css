@@ -167,7 +167,7 @@ body.dark-mode {
 
 @media (max-width: 600px) {
     .container {
-        margin-top: 150px;
+        margin-top: 90px;
         padding: 10px;
         max-width: 90%;
         height: 466px;
