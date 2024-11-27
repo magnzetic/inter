@@ -2,11 +2,12 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;  /* Activate Flexbox */
-    justify-content: center;  /* Center horizontally */
-    align-items: center;  /* Center vertically */
-    min-height: 100vh;  /* Ensure the body takes full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     transition: background-color 0.3s, color 0.3s, font-size 0.3s;
+    box-sizing: border-box; /* Ensures padding doesn't affect dimensions */
 }
 body.light-mode {
     background-color: #f4f4f4;
@@ -103,15 +104,61 @@ body.dark-mode {
     }
 }
 .container {
-    width: 307px;
-    margin-top: 40px;
-    padding: 40px;  /* Adds padding for space after the border */
-    height: 430px; /* Limit container height */
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    display: flex;
-    flex-direction: column;  /* Ensure the content is stacked vertically */
+    width: 90%; /* Relative width for responsiveness */
+    max-width: 400px; /* Restrict maximum width for larger screens */
+    margin-top: 20px;
+    padding: 20px;
+    height: 560px;
+    max-height: 80vh; /* Ensure it fits within smaller viewports */
+    overflow: hidden; /* Prevent content overflow */
     background-image: url('bg light.png');
     background-size: cover;
+    transition: all 0.3s;
+}
+
+@media (min-width: 1024px) {
+    .container {
+        width: 400px;
+        max-width: 500px;
+        justify-content: center;
+        align-items: center;
+    }
+    .small-container {
+        max-height: 75vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        justify-content: center;
+        align-items: center;
+    }
+    .choice {
+        height: 56px;
+        width: 40px;
+        font-size: 0.8rem;
+    }
+    h1 {
+        font-size: 2rem; /* Slightly larger font for tablets */
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+        max-width: 90%;
+        height: 373px;
+        width: 266px;
+        justify-content: center;
+        align-items: center;
+    }
+    h1 {
+        font-size: 1.5rem; /* Scale down */
+    }
+    .start-button {
+        font-size: 0.9rem; /* Smaller font size */
+    }
 }
 
 body.dark-mode .container {
@@ -124,11 +171,17 @@ body.dark-mode .container {
 
 .small-container {
     width: 100%; /* Fit inside the parent container */
-    height: 350px; /* Set a fixed height */
-    padding: 0px;
+    height: 90%; /* Set a fixed height */
+    padding-left: 10px;
+    margin-top: 8%;
+    margin-bottom: 20px;
+    margin-left: 0%;
+    margin-right: 0%;
     overflow-y: auto; /* Enable vertical scrolling */
     background-color: transparent;
     transition: background-color 0.3s, color 0.3s;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Style the scrollbars for better appearance */
@@ -297,6 +350,7 @@ body.dark-mode .start-button:hover {
 h1 {
     position: relative;
     font-size: 32px; /* Adjust the font size as needed */
+    margin-top: 50px; /* Add space below the title */
     margin-bottom: 20px; /* Add space below the title */
     text-align: center; /* Center-align the title */
 }
