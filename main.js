@@ -39,3 +39,31 @@ fontSizeBtnDecrease.addEventListener('click', () => {
     document.documentElement.style.fontSize = newFontSize + 'px';
     localStorage.setItem('fontSize', newFontSize); // Save font size preference
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.container');
+
+    // Simulate a delay or event trigger (e.g., after loading screen)
+    setTimeout(() => {
+        container.classList.add('active'); // Add the active class to start the animation
+    }, 500); // Adjust the delay as needed
+});
+
+window.addEventListener('load', () => {
+    const loadingAnimation = document.getElementById('loadingAnimation');
+    const landingPage = document.getElementById('landing-page');
+
+    setTimeout(() => {
+        // Add fade-out animation to the loading animation
+        loadingAnimation.classList.add('fade-out');
+
+        // Remove the loading animation after it fades out
+        setTimeout(() => {
+            loadingAnimation.style.display = 'none';
+            landingPage.style.display = 'block';
+
+            // Add fade-in animation to the landing page
+            landingPage.classList.add('show');
+        }, 1000); // Match this to the fadeOut animation duration
+    }, 4000); // Delay for the initial loading animation
+});
