@@ -34,40 +34,9 @@
 
 <!-- Landing Page Content -->
 <div id="landing-page" class="container center" style="display: none;">
-    <div class="small-container">
-        <h1>judul cerita di sini</h1>
-        <p>sinopsis di sini</p>
-        <a class="start-button" onclick="startStory()">Mulai</a>
-    </div>
-</div>
-
-<!-- Story Content, Hidden Initially -->
-<div id="story" style="display: none;">
-    <div class="container" id="narration">
-        <div class="small-container">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ullamcorper nec quam vitae faucibus.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ullamcorper nec quam vitae faucibus.</p>
-            <p>Sed quis nulla sed ante vulputate pulvinar sed sed nisl. Proin volutpat venenatis nibh in facilisis.</p>
-        </div>
-    </div>
-
-    <div class="choice-container">
-        <a class="choice" id="choice-cave" onclick="chooseOption('A')" style="background-image: url('choosekiri.png');">
-            Choice A
-        </a>
-        <a class="choice" id="choice-lake" onclick="chooseOption('B')" style="background-image: url('choosekanan.png');">
-            Choice B
-        </a>
-    </div>
-
-    <div id="next-narration" style="display:none;">
-        <div id="A">
-            <p>Adventure A begins here...</p>
-        </div>
-        <div id="B">
-            <p>Adventure B begins here...</p>
-        </div>
-    </div>
+    <h1>judul cerita di sini</h1>
+    <p>sinopsis di sini</p>
+    <a class="start-button" onclick="startStory()">Mulai</a>
 </div>
 
 <script>
@@ -126,8 +95,7 @@
 
     // Start the Story (hide landing page, show story)
     function startStory() {
-        document.getElementById('landing-page').style.display = 'none';
-        document.getElementById('story').style.display = 'block';
+        window.location.href = 'page1.html';
     }
 
     // Handle Story Choices
