@@ -146,27 +146,12 @@ body.dark-mode {
 
 @media (max-width: 600px) {
     .container {
-        margin-top: 20px;
         padding: 10px;
         max-width: 90%;
         height: 373px;
         width: 266px;
         justify-content: center;
         align-items: center;
-    }
-    .small-container {
-        width: 100%; /* Fit inside the parent container */
-        height: 90%; /* Set a fixed height */
-        padding-left: 10px;
-        margin-top: 8%;
-        margin-bottom: 20px;
-        margin-left: 0%;
-        margin-right: 0%;
-        overflow-y: auto; /* Enable vertical scrolling */
-        background-color: transparent;
-        transition: background-color 0.3s, color 0.3s;
-        align-items: center;
-        justify-content: center;
     }
     h1 {
         font-size: 1.5rem; /* Scale down */
