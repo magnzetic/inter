@@ -103,10 +103,10 @@ body.dark-mode {
     }
 }
 .container {
-    width: 333px;
+    width: 307px;
     margin-top: 40px;
-    padding: 50px;  /* Adds padding for space after the border */
-    height: 466px; /* Limit container height */
+    padding: 40px;  /* Adds padding for space after the border */
+    height: 430px; /* Limit container height */
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     display: flex;
     flex-direction: column;  /* Ensure the content is stacked vertically */
